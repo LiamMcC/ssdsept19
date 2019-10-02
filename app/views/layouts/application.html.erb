@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>GolfStore</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    
+    
+    
+    <header class="headSec">
+      <h1>Wednesday Night Golf Goodies!</h1>
+      
+      <ul>
+        <li><%= link_to "HOME", "/" %></li>
+        <li><%= link_to "ABOUT", about_path %></li>
+        <li><%= link_to "HELP", help_path %></li>
+        
+        
+      </ul>
+      
+    </header>
+    
+    <div class="container">
+      
+      <%= yield %>
+      
+    </div>
+    
+    <footer class="footer">
+      <h1>Look Im At The Bottom.....</h1>
+      
+    </footer>
+  </body>
+</html>

@@ -1,4 +1,7 @@
 class CartController < ApplicationController
+  before_action :authenticate_user!
+  
+  
  def index
     # passes a cart to display
     if session[:cart] then

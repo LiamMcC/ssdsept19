@@ -21,8 +21,34 @@
         <li><%= link_to "PRODUCTS", "/items" %></li>
         <li><%= link_to "ABOUT", about_path %></li>
         <li><%= link_to "HELP", help_path %></li>
-        <li><%= link_to "LOG IN", "/login" %></li>
-        <li><%= link_to "LOG OUT", "/logout" %></li>
+        <li><%= link_to "ALL USERS", "/allusers" %></li>
+        <li><%= link_to "OLD LOG IN", "/login" %></li>
+        
+        
+        
+        
+        
+         <% if user_signed_in? %>
+                 <li><a href="#">Hi <%= current_user.admin %></a></li>
+                 <li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
+          <li><%= link_to 'Edit Profile', edit_user_registration_path %></li>
+          <% else %>
+                 <li><%= link_to 'Register', new_user_registration_path %></li> 
+                 <li><%= link_to 'Sign in', new_user_session_path %></li>
+          <% end %>
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li><%= link_to "OLD LOG OUT", "/logout" %></li>
          <li><%= link_to "CART", "/cart" %></li>
         
       </ul>

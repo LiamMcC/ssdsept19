@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  devise_for :users
  # get 'cart/index'
 
   resources :items
@@ -32,6 +33,16 @@ get '/cart/clearcart' => 'cart#clearcart'
 get '/cart' => 'cart#index'
 
 get '/cart/:id' => 'cart#add'
+
+get '/upgrade/:id' => 'static_pages#upgrade'
+get '/downgrade/:id' => 'static_pages#downgrade'
+
+get '/allusers' => 'static_pages#allusers'
+
+
+ 
+
+
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

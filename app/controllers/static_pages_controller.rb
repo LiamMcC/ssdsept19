@@ -14,9 +14,25 @@ class StaticPagesController < ApplicationController
   
   
   def allusers
-    
+   
     @users = User.all
   end
+  
+  
+  
+   
+   def paid
+    # redirect_to "/cart/clear"
+    flash[:notice] = 'Transaction Complete'
+       @order = Order.find_by(id: params[:id])
+    @order.update_attribute(:status , "Paid by User: #{current_user.email}")
+    #"Paid by User:#{current_user.id} #{current_user.name} #{current_user.surname}")
+    
+   end
+
+   
+  
+  
   
    def upgrade 
     @user = User.find_by(id: params[:id])

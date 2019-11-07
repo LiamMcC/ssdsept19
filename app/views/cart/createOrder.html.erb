@@ -1,0 +1,67 @@
+You just placed order no: <%= @orders.id %> 	
+
+<table id="customers">
+    <tr>
+         
+          <% @orders.id do |order| %>  
+
+       <td>Order reference for the order you just placed <%= order.id %></td>
+        <% end %>
+    </tr>
+</table>    
+    
+    
+<table id="customers">
+     <% @total = 0 %>
+    <% @orderitems.each do |id,quantity| %>
+      <tr>
+        <% item = Orderitem.find_by_id(id) %>
+       
+        <td><%= item.title %></td>
+        <td><%= item.quantity %></td>
+       <td><%=number_to_currency(item.price, :unit => "€")%></td> 
+       <td><%= number_to_currency(item.quantity * item.price, :unit => "€") %></td>
+       </tr>
+       
+       <% timx = (item.quantity * item.price)%>   
+
+     
+     
+      <% @total += timx %>
+      
+      </tr>
+    <% end %>
+    
+    
+    <% if @total > 100 %>
+    
+    <% shipping = 0 %>
+    
+    <% else %>
+    <% shipping = 30 %>
+    
+    <% end %>
+    
+      <% @overall = shipping + @total%>
+
+    
+    <tr>
+        
+       <td>Order Total: &euro; <%= @total %></td>
+       
+       <% if @total > 100 %>
+       
+       <td>Shipping Free you spent Enough</td>
+       
+       <% else %>
+       <td>Shipping €30</td>
+       <% end %>
+       <td>Grand Total: &euro; <%= @overall %></td>
+       
+      </tr>
+      
+      <tr>
+          <td><h2>  <a href="/paid/<%= @order.id %>" class="button">Pay Now</a></h2></td>
+      </tr>
+
+</table>

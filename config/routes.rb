@@ -1,6 +1,19 @@
 Rails.application.routes.draw do
   
-  devise_for :users
+  resources :orders do 
+    resources:orderitems
+  end
+
+  
+  
+  
+  devise_for :users do 
+    resources :orders 
+  end
+  
+  
+  
+  
  # get 'cart/index'
 
   resources :items
@@ -16,7 +29,7 @@ Rails.application.routes.draw do
     get '/logout' => 'user#logout'
     
     
-    
+    get '/checkout' => 'cart#createOrder' 
     
     
     # This looks like what we did for the add item ...... Muuhhhhh yes Liam you are right......
@@ -40,7 +53,7 @@ get '/downgrade/:id' => 'static_pages#downgrade'
 get '/allusers' => 'static_pages#allusers'
 
 
- 
+ get '/paid/:id' => 'static_pages#paid' 
 
 
 

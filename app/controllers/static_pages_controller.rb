@@ -1,7 +1,21 @@
 class StaticPagesController < ApplicationController
   def home
    # current_user.update_attribute :admin, true
+   
+   @categories = Category.all
+   
+   
   end
+  
+  
+  def category
+    catName = params[:title]
+    @items = Item.where("category like ? ", catName)
+  end
+
+  
+  
+  
 
   def help
  

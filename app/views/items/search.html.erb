@@ -1,0 +1,37 @@
+<h2>You Searched Our Product Catalog For <%= @search_term %></h2>
+
+<% if @items.length == 0  %>
+<br />
+<h2>No products were found to match your search</h2>
+<% end %>
+
+
+<table class="catalog">
+       <% @items.each do |item| %>
+      <div class="itemhols">
+       <h1><%= item.title %></h1>
+       
+       <%= link_to (image_tag item.image_url, :class => "itemholsIm"), item %>
+        <p><%= item.description %></p>
+       <p>Price <%= number_to_currency(item.price, :unit => "€") %>
+       <br>
+        Category: <%= item.category %>
+        <br>
+        Brand: <%= item.brand %></p>
+       
+       <p>
+         <%= link_to 'Show',  item, :class => "button", :role => "button" %>
+         
+         <% if session[:login] == 1 %>
+         <%= link_to 'Edit',  edit_item_path(item), :class => "button", :role => "button" %>
+         <%= link_to 'Destroy',  item, method: :delete, data: { confirm: 'Are you sure?' }, :class => "button", :role => "button" %>
+         <% end %>
+         
+         
+         
+         <a href="/cart/<%= item.id %>" class="button">Add To Cart</a>
+       </p>
+        
+      </div>
+    <% end %>
+</table>

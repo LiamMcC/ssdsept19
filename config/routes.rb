@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :categories
   resources :orders do 
     resources:orderitems
   end
@@ -11,8 +12,8 @@ Rails.application.routes.draw do
     resources :orders 
   end
   
-  
-  
+  post '/search' => 'items#search'
+  get 'category/:title' => 'static_pages#category'
   
  # get 'cart/index'
 

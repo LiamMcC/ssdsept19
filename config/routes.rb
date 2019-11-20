@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :site_contents
   resources :categories
   resources :orders do 
     resources:orderitems
@@ -11,6 +12,9 @@ Rails.application.routes.draw do
   devise_for :users do 
     resources :orders 
   end
+  
+  get 'dynamicpage/:location' => 'static_pages#dynamicPage'
+  
   
   post '/search' => 'items#search'
   get 'category/:title' => 'static_pages#category'

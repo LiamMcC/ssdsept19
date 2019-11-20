@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Site Contents</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Heading1</th>
+      <th>Heading2</th>
+      <th>Location</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @site_contents.each do |site_content| %>
+      <tr>
+        <td><%= site_content.title %></td>
+        <td><%= site_content.heading1 %></td>
+        <td><%= site_content.heading2 %></td>
+        <td><%= site_content.location %></td>
+        <td><%= link_to 'Show', site_content %></td>
+        <td><%= link_to 'Edit', edit_site_content_path(site_content) %></td>
+        <td><%= link_to 'Destroy', site_content, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Site Content', new_site_content_path %>

@@ -14,7 +14,10 @@ class StaticPagesController < ApplicationController
   end
 
   
-  
+  def dynamicPage
+   catName = params[:location]
+    @site_contents = SiteContent.where("location like ? ", catName)
+  end
   
 
   def help
@@ -24,6 +27,7 @@ class StaticPagesController < ApplicationController
   end
 
   def about
+   
   end
   
   

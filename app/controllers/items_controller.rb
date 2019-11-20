@@ -11,7 +11,7 @@ class ItemsController < ApplicationController
   
   def search
      st = "%#{params[:searchMe]}%"
-     @items = Item.where("title like ?", st)
+     @items = Item.where("title like ? or description like ?" , st, st)
     end
 
 

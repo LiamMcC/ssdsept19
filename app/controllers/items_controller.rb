@@ -1,82 +1,78 @@
-class ItemsController < ApplicationController
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
+class OrdersController < ApplicationController
+  before_action :set_order, only: [:show, :edit, :update, :destroy]
 
-  # GET /items
-  # GET /items.json
+  # GET /orders
+  # GET /orders.json
   def index
-    @items = Item.all
+    @orders = Order.all
   end
-  
-  
-  
-  def search
-     st = "%#{params[:searchMe]}%"
-     @items = Item.where("title like ? or description like ?" , st, st)
-    end
 
-
-  # GET /items/1
-  # GET /items/1.json
+  # GET /orders/1
+  # GET /orders/1.json
   def show
+    
+    @orderitems = Orderitem.all
+@orderitems = Orderitem.where(order_id: params[:id])
+
   end
 
-  # GET /items/new
+  # GET /orders/new
   def new
-    @item = Item.new
+    @order = Order.new
   end
 
-  # GET /items/1/edit
+  # GET /orders/1/edit
   def edit
   end
 
-  # POST /items
-  # POST /items.json
+  # POST /orders
+  # POST /orders.json
   def create
-    @item = Item.new(item_params)
+    @order = Order.new(order_params)
 
     respond_to do |format|
-      if @item.save
-        format.html { redirect_to @item, notice: 'Item was successfully created.' }
-        format.json { render :show, status: :created, location: @item }
+      if @order.save
+        format.html { redirect_to @order, notice: 'Order was successfully created.' }
+        format.json { render :show, status: :created, location: @order }
       else
         format.html { render :new }
-        format.json { render json: @item.errors, status: :unprocessable_entity }
+        format.json { render json: @order.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /items/1
-  # PATCH/PUT /items/1.json
+  # PATCH/PUT /orders/1
+  # PATCH/PUT /orders/1.json
   def update
     respond_to do |format|
-      if @item.update(item_params)
-        format.html { redirect_to @item, notice: 'Item was successfully updated.' }
-        format.json { render :show, status: :ok, location: @item }
+      if @order.update(order_params)
+        format.html { redirect_to @order, notice: 'Order was successfully updated.' }
+        format.json { render :show, status: :ok, location: @order }
       else
         format.html { render :edit }
-        format.json { render json: @item.errors, status: :unprocessable_entity }
+        format.json { render json: @order.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /items/1
-  # DELETE /items/1.json
+  # DELETE /orders/1
+  # DELETE /orders/1.json
   def destroy
-    @item.destroy
+    @order.destroy
     respond_to do |format|
-      format.html { redirect_to items_url, notice: 'Item was successfully destroyed.' }
+      format.html { redirect_to orders_url, notice: 'Order was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_item
-      @item = Item.find(params[:id])
+    def set_order
+      @order = Order.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def item_params
-      params.require(:item).permit(:title, :description, :price, :image_url, :category, :brand)
+    def order_params
+      params.require(:order).permit(:order_date, :user_id, :status)
     end
 end

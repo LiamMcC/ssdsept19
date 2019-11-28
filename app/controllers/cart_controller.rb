@@ -24,6 +24,7 @@ class CartController < ApplicationController
 @orderitems = Orderitem.where(order_id: Order.last)
 
 session[:cart] = nil
+session[:howMuch] = 0
 end
 
   
@@ -37,6 +38,16 @@ end
   
   
  def index
+   
+   @user = User.find(current_user.id)
+   
+   
+   @orderitems = Orderitem.where(order_id: @user.orders.last)
+   
+   #@orderitems = Orderitem.all
+   
+   
+   
     # passes a cart to display
     if session[:cart] then
       @cart = session[:cart]
@@ -90,7 +101,7 @@ end
   
   def clearcart
     session[:cart] = nil
-    
+    session[:howMuch] = 0
      redirect_to :action => :index
     
   end

